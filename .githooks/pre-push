@@ -1,0 +1,233 @@
+#!/bin/bash
+
+function main() {
+    check_version
+
+    install_dependencies
+    log "[✔] Install dependencies"
+
+    unittest
+    check 'unittest' $?
+    log "[✔] Unit Tests"
+
+    expo_dependencies
+    check 'expo-dependencies' $?
+    log "[✔] Check expo dependencies"
+
+    # expo_doctor
+    # check 'expo-doctor' $?
+    # log "[✔] Check expo-doctor"
+
+    eslinter_fix
+    check 'linter' $?
+    log "[✔] Fix prettier"
+
+    linter
+    check 'linter' $?
+    log "[✔] Linter"
+    
+    coverage
+    log "[✔] Coverage tests"
+
+    check_sca
+    check 'check_sca' $?
+    log "[✔] check SCA"
+
+    sca
+    log "[✔] SCA"
+
+    log_color "Every controls are checked" "green"
+}
+
+###
+# Check return code of compiling, unit tests and tests coverage
+# $1: action to verify
+# $2: return code of the action (0 = action well executed, otherwise bad execution)
+###
+function check() {
+    action=$1
+    result_code=$2
+    case $action in
+
+    'unittest')
+        [ $result_code != 0 ] && log_color "Unit tests are not successful.\nCancel git push." "red" && exit 1
+        ;;
+        
+    'expo-dependencies')
+        [ $result_code != 0 ] && log_color "Expo-dependencies checks are not successful.\nCancel git push." "red" && exit 1
+        ;;
+    'expo_doctor')
+        [ $result_code != 0 ] && log_color "Expo-doctor checks are not successful.\nCancel git push." "red" && exit 1
+        ;;
+    'linter')
+        [ $result_code != 0 ] && log_color "Linter checks is not successful.\nCancel git push." "red" && exit 1
+        ;;
+    'check_sca')
+        [ $result_code != 0 ] && log_color "No package to launch analysis" "red" && log Execute: $(log_color  "npm i -g npm-audit-html@beta" "yellow") && log_color "Cancel git push" "red" && exit 1
+        ;;
+    esac
+}
+
+# Compare if we need to change version of application based on the most recent git tag
+function check_version {
+    last_tag=$(git tag | tail -n 1)
+    if [ -z ${last_tag} ];then
+        return 0
+    fi
+    last_version=$(echo "${last_tag}" | grep -oP "\K[0-9].[0-9].[0-9]")
+
+    file_version="./app.json"
+
+    regex="\"version\": \"\K([0-9].[0-9].[0-9])"
+    current_version=$(grep -Po "${regex}" "${file_version}")
+
+    vercomp ${current_version} ${last_version}
+    result=$?
+    case ${result} in
+        0) op='=';;
+        1) op='>';;
+        2) op='<';;
+    esac
+    if [ ${op} == "=" ] || [ ${op} == "<" ];then 
+        log "$(log_color "Careful your version is downgraded current:" "yellow") $(log_color "${current_version}" "red") $(log_color "last:" "yellow") $(log_color "${last_version}" "red")"
+    fi
+}
+
+function install_dependencies() {
+    rm -f package-lock.json
+    npm install --silent
+    git add package-lock.json
+    git commit --amend --no-edit
+}
+
+function unittest() {
+    npm run test
+    return $?
+}
+
+function expo_dependencies(){
+    npx expo install --check
+    return $?
+}
+
+function expo_doctor(){
+    npx expo-doctor
+    return $?
+}
+
+function coverage() {
+    npm run test:coverage
+    start ./coverage/lcov-report/index.html
+}
+
+function eslinter_fix() {
+    npm run eslint:fix
+    return $?
+}
+
+function linter() {
+    npm run eslint
+    return $?
+}
+
+function check_sca(){
+    which npm-audit-html > /dev/null 2>/dev/null
+    return $?
+}
+
+function sca() {
+    packages=$(find . -name 'node_modules' -prune -o -name 'package.json' -print)
+
+    root_folder=$(pwd)
+    for package in ${packages[@]}; do
+        parent_folder="$(dirname "$package")"
+        cd $parent_folder
+        npm audit --json | npm-audit-html
+        start ./npm-audit.html
+        cd ${root_folder}      
+    done
+}
+
+################################################################### Utils functions ###################################################################
+
+
+###
+# Compare version semver
+# $1: [string], semver version compared (ex: 1.0.0)
+# $2: [string], semver version to compare (ex: 1.1.1)
+# returns: 0 if equal, 1 if $1 < $2, 2 if $1 > $2
+###
+vercomp () {
+    if [[ $1 == $2 ]]
+    then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if ((10#${ver1[i]:=0} > 10#${ver2[i]:=0}))
+        then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+    return 0
+}
+
+###
+# Display datetime (ex: 2022-01-10 23:20:35)
+###
+function get_datetime {
+    log $(date '+%Y-%m-%d %H:%M:%S')
+}
+
+################################################################### Logging functions ###################################################################
+
+###
+# Print function
+###
+function log {
+    echo -e $@
+}
+
+###
+# Print color function
+###
+function log_color {
+    message=$1
+    color=$2
+    log ${COLORS[$color]}$message${COLORS[nc]}
+}
+
+typeset -A COLORS=(
+    [default]='\033[0;39m'
+    [black]='\033[0;30m'
+    [red]='\033[0;31m'
+    [green]='\033[0;32m'
+    [yellow]='\033[0;33m'
+    [blue]='\033[0;34m'
+    [magenta]='\033[0;35m'
+    [cyan]='\033[0;36m'
+    [light_gray]='\033[0;37m'
+    [light_grey]='\033[0;37m'
+    [dark_gray]='\033[0;90m'
+    [dark_grey]='\033[0;90m'
+    [light_red]='\033[0;91m'
+    [light_green]='\033[0;92m'
+    [light_yellow]='\033[0;93m'
+    [light_blue]='\033[0;94m'
+    [light_magenta]='\033[0;95m'
+    [light_cyan]='\033[0;96m'
+    [nc]='\033[0m' # No Color
+)
+
+main "$@"

@@ -1,0 +1,24 @@
+- FINIR README et check issues
+
+- Produire l'application
+
+- Supported Android files AndroidManifest.xml → App manifest with settings for build tools, Android, and Google Play.
+  gradle.properties → Configuration for the Grdle build toolkit itself. colors.xml → Color resources defining the color and
+  opacity. strings.xml → String resources defining string content, styling, and formatting. styles.xml → Style resources
+  defining the format and look for a UI element.
+
+TODO v2
+
+- TODO changer les settings en mettant un onglet `range` avec des valeurs min-max pour chaque element
+- TODO faire des tests unitaires
+
+TODO Application pour l'application de Repas
+
+- L'idées est d'avoir une liste de repas ou on peut ajouter des repas et créer un menu de la semaine, a chaque fois ca genere
+  une nouvelle liste de menu qu'on peut adapter
+- voir date de repas
+- faire des listes de repas potentiel
+- et tirer au sort un menu de x jours avec le choix
+- Garder les menus afin de ne pas retirer toujours les mêmes
+
+- TODO Version UI plus moderne (Material / NativeBase)

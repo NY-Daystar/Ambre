@@ -1,0 +1,54 @@
+{
+	"expo": {
+		"name": "Ambre",
+		"slug": "Ambre",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "assets/icons/icon.png",
+		"scheme": "ambre",
+		"userInterfaceStyle": "light",
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"backgroundColor": "#E6F4FE",
+				"foregroundImage": "assets/icons/android/icon-foreground.png",
+				"backgroundImage": "assets/icons/android/icon-background.png",
+				"monochromeImage": "assets/icons/android/icon-monochrome.png"
+			},
+			"predictiveBackGestureEnabled": false,
+			"package": "com.nydaystar.Ambre"
+		},
+		"web": {
+			"output": "static",
+			"favicon": "assets/web/favicon.png"
+		},
+		"plugins": [
+			"expo-router",
+			[
+				"expo-splash-screen",
+				{
+					"image": "assets/plugin/splash-icon.png",
+					"imageWidth": 200,
+					"resizeMode": "contain",
+					"backgroundColor": "#ffffff",
+					"dark": {
+						"backgroundColor": "#000000"
+					}
+				}
+			],
+			"expo-localization"
+		],
+		"experiments": {
+			"typedRoutes": true,
+			"reactCompiler": true
+		},
+		"extra": {
+			"router": {},
+			"eas": {
+				"projectId": "205144a3-fde7-4c97-b277-c5b4a0b8169f"
+			}
+		}
+	}
+}
