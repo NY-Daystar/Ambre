@@ -1,4 +1,4 @@
-# Ambre
+<h1 style="text-align:center;" > <img style="vertical-align: middle;" alt="Application view" src="assets/icons/icon.png"width="48" height="48" > Ambre</h1>
 
 <p style="text-align:center;">
     <img style="text-align:center;" alt="Application view" src="docs/app_view.png" width="230" height="400">
@@ -40,7 +40,7 @@ Source code analysed with [DeepSource](https://deepsource.com/) and [Codacy](htt
 ## Requirements
 
 - [JDK 11](https://www.oracle.com/fr/java/technologies/downloads/)
-- [`npm` & `nvm`](npm => v9.7.1 & node => v20.3.1 )
+- [npm (=> v11.9.0) & node (=> v25.6.1)](https://nodejs.org/en)
 - [Android Studio](https://developer.android.com/studio)
     - Configure a device with `Virtual Device Manager`
     - `SDK` => version 33
@@ -130,7 +130,7 @@ eas build:configure
         ```
     - `preview` profile
         ```bash
-        eas build -p android --profile production
+        eas build -p android --profile preview
         ```
     - `production` profile
         ```bash
@@ -178,8 +178,5 @@ eas build:configure
 
 ## Credits
 
-Made by Lucas Noga. Licensed under GPLv3.
-
-```
-
-```
+Made by Lucas Noga.  
+Licensed under GPLv3.

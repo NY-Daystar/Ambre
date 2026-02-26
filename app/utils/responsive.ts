@@ -14,12 +14,10 @@ interface Dimension {
  * @returns
  */
 export const wp = (percentage: number): Dimension => {
-	let dim: Dimension = {
+	return {
 		height: height * (percentage / 100),
 		width: width * (percentage / 100),
-	};
-
-	return dim;
+	} as Dimension;
 };
 
 export default wp;

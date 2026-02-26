@@ -11,22 +11,22 @@ const styles = StyleSheet.create({
 	view: {
 		flexDirection: 'row',
 		borderBottomWidth: 1,
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	input: {
 		flex: 2,
 		fontSize: 50,
 		textAlign: 'center',
-		marginBottom: 20
+		marginBottom: 10,
 	},
 	unit: {
 		flex: 1,
 		fontSize: 35,
 		textAlign: 'center',
-	}
+	},
 });
 
-export default function LargeNumberInput({ value, unit, onChange }: Props) {;
+export default function LargeNumberInput({ value, unit, onChange }: Props) {
 	return (
 		<View style={styles.view}>
 			<TextInput
@@ -38,6 +38,5 @@ export default function LargeNumberInput({ value, unit, onChange }: Props) {;
 			/>
 			<Text style={styles.unit}>{unit}</Text>
 		</View>
-        
 	);
 }

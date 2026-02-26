@@ -13,7 +13,7 @@ export default class BloodSugar {
 
 	private unit: string;
 
-	private static MIN_MG = 80;
+	private static MIN_MG = 60;
 	private static MAX_MG = 300;
 
 	private bases: BasePeriod[];

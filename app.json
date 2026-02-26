@@ -2,7 +2,7 @@
 	"expo": {
 		"name": "Ambre",
 		"slug": "Ambre",
-		"version": "1.0.0",
+		"version": "1.0.1",
 		"orientation": "portrait",
 		"icon": "assets/icons/icon.png",
 		"scheme": "ambre",
@@ -12,7 +12,7 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"backgroundColor": "#E6F4FE",
+				"backgroundColor": "#2B2E30",
 				"foregroundImage": "assets/icons/android/icon-foreground.png",
 				"backgroundImage": "assets/icons/android/icon-background.png",
 				"monochromeImage": "assets/icons/android/icon-monochrome.png"
