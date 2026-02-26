@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		textAlign: 'center',
 		textDecorationLine: 'underline',
-		marginTop: 25,
+		marginTop: 10,
 		marginBottom: 20,
 	},
 	field: { marginBottom: 15 },

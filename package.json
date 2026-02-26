@@ -1,6 +1,6 @@
 {
 	"name": "ambre",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "React native application to calculate blood sugar unit",
 	"repository": "https://github.com/NY-Daystar/Ambre",
 	"author": "Lucas Noga <luc4snoga@gmail.com>",
@@ -15,6 +15,7 @@
 		"android": "expo start --android",
 		"ios": "expo start --ios",
 		"web": "expo start --web",
+		"check": "npx expo-doctor",
 		"test": "jest",
 		"test:verbose": "jest --verbose",
 		"test:coverage": "jest --coverage",

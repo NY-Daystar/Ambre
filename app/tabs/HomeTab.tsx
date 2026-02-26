@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
 	container: { flex: 1, padding: 20 },
 	resultLabel: {
 		fontSize: 30,
-		marginTop: 50,
+		marginTop: 30,
 		textAlign: 'center',
 	},
 	result: {
 		fontSize: 40,
-		marginTop: 30,
+		marginTop: 20,
 		fontWeight: 'bold',
 		textAlign: 'center',
 		color: '#0e6969',
@@ -54,11 +54,15 @@ export default function HomeTab({ configuration, isActive }: Props) {
 		<View style={styles.container}>
 			<RadioGroup selected={selected} onChange={setSelected} />
 
-			<View style={styles.divider}></View>
+			<View style={styles.divider} />
 
-			<LargeNumberInput value={number} unit={configuration.BloodUnit} onChange={setNumber} />
+			<LargeNumberInput
+				value={number}
+				unit={configuration.BloodUnit}
+				onChange={setNumber}
+			/>
 
-			<View style={styles.divider}></View>
+			<View style={styles.divider} />
 
 			<Text style={styles.resultLabel}>{t('result')}</Text>
 			<Text style={styles.result}>{result}</Text>
