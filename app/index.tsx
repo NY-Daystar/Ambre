@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AppState, StyleSheet, Text, View } from 'react-native';
+import { Appearance, AppState, StyleSheet, Text, View } from 'react-native';
 import { BottomTabs } from './components';
 import { ConfigService, defaultConfig, Tab } from './config';
 import { AppConfiguration } from './config/AppConfiguration';
@@ -31,9 +31,13 @@ const styles = StyleSheet.create({
 export default function App() {
 	const appRefState = useRef(AppState.currentState);
 	const [appState, setAppState] = useState(appRefState.current);
-	const [activeTab, setActiveTab] = useState<string>(Tab.Home);
+	const [activeTab, setActiveTab] = useState<string>(Tab.Home.text);
 	const [config, setConfig] = useState<AppConfiguration>(defaultConfig);
 	const [isLoaded, setIsLoaded] = useState(false);
+
+	useEffect(() => {
+		Appearance.setColorScheme('light');
+	}, []);
 
 	useEffect(() => {
 		const init = async () => {
@@ -68,7 +72,7 @@ export default function App() {
 				<Text style={styles.versionText}>v{config.Version}</Text>
 			</View>
 			<View style={styles.content}>
-				{activeTab === Tab.Home ? (
+				{activeTab === Tab.Home.text ? (
 					<HomeTab configuration={config} isActive={appState === 'active'} />
 				) : (
 					<SettingsTab configuration={config} setConfiguration={setConfig} />

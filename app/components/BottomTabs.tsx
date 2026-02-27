@@ -1,6 +1,7 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Tab } from '../config';
+import { FontAwesome } from '@expo/vector-icons';
+import React, { useCallback } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Tab, TabItem } from '../config';
 import { wp } from '../utils/responsive';
 
 interface Props {
@@ -28,17 +29,24 @@ const styles = StyleSheet.create({
 });
 
 export default function BottomTabs({ activeTab, onChange }: Props) {
-	const tabs: string[] = Tab.GetTabs();
+	const tabs: TabItem[] = Tab.GetTabs();
+
+	const handleTabPress = useCallback(
+		(tabText: string) => {
+			onChange(tabText);
+		},
+		[onChange],
+	);
 
 	return (
 		<View style={styles.container}>
 			{tabs.map((tab) => (
 				<TouchableOpacity
-					key={tab}
-					style={[styles.tab, activeTab === tab && styles.active]}
-					onPress={() => onChange(tab)}
+					key={tab.text}
+					style={[styles.tab, activeTab === tab.text && styles.active]}
+					onPress={() => handleTabPress(tab.text)}
 				>
-					<Text style={styles.text}>{tab}</Text>
+					<FontAwesome name={tab.icon as any} size={24} color="black" />
 				</TouchableOpacity>
 			))}
 		</View>

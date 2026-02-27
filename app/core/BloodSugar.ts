@@ -37,27 +37,28 @@ export default class BloodSugar {
 		}
 
 		const ratio = this.compute(value, period);
-		return `${ratio}${this.unit}`;
+		return `${ratio} ${this.unit}`;
 	}
 
 	private compute(value: number, period: string): number {
-		const base = this.bases.find((base) => base.period === period)?.base ?? 0;
+		const base = (this.bases.find((base) => base.period === period)?.base ??
+			0) as number;
 		if (value < BloodSugar.MIN_MG) {
 			return 0;
 		}
-		if (value > BloodSugar.MIN_MG && value <= 100) {
+		if (value > BloodSugar.MIN_MG && value < 100) {
 			return base - 1;
 		}
-		if (value > 100 && value <= 150) {
+		if (value >= 100 && value < 150) {
 			return base;
 		}
-		if (value > 150 && value <= 200) {
+		if (value >= 150 && value < 200) {
 			return base + 1;
 		}
-		if (value > 200 && value <= 250) {
+		if (value >= 200 && value < 250) {
 			return base + 2;
 		}
-		if (value > 250 && value <= BloodSugar.MAX_MG) {
+		if (value >= 250 && value < BloodSugar.MAX_MG) {
 			return base + 3;
 		}
 		return base + 4;

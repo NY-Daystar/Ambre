@@ -2,7 +2,7 @@
 	"expo": {
 		"name": "Ambre",
 		"slug": "Ambre",
-		"version": "1.0.1",
+		"version": "1.1.0",
 		"orientation": "portrait",
 		"icon": "assets/icons/icon.png",
 		"scheme": "ambre",
@@ -13,9 +13,9 @@
 		"android": {
 			"adaptiveIcon": {
 				"backgroundColor": "#2B2E30",
-				"foregroundImage": "assets/icons/android/icon-foreground.png",
-				"backgroundImage": "assets/icons/android/icon-background.png",
-				"monochromeImage": "assets/icons/android/icon-monochrome.png"
+				"foregroundImage": "assets/icons/icon.png",
+				"backgroundImage": "assets/icons/icon.png",
+				"monochromeImage": "assets/icons/icon.png"
 			},
 			"predictiveBackGestureEnabled": false,
 			"package": "com.nydaystar.Ambre"

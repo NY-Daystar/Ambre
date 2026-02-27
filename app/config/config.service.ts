@@ -14,7 +14,9 @@ export default {
 			}
 			return defaultConfig;
 		} catch (error) {
-			throw new Error(`Error loading config: ${error}, Loading default config`);
+			throw new Error(
+				`Error loading config: ${error}, Loading default config`,
+			);
 		}
 	},
 

@@ -4,7 +4,8 @@
     <img style="text-align:center;" alt="Application view" src="docs/app_view.png" width="230" height="400">
 </p>
 
-![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)  
+
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/220cdabf2d784c6897709108afddf0f6)](https://app.codacy.com/gh/NY-Daystar/Ambre/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Ambre-CI](https://github.com/NY-Daystar/ambre/actions/workflows/js.yml/badge.svg)](https://github.com/NY-Daystar/ambre/actions/workflows/js.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -31,6 +32,7 @@ Source code analysed with [DeepSource](https://deepsource.com/) and [Codacy](htt
 - [Requirements](#requirements)
 - [User guide](#user-guide)
 - [Get started](#get-started)
+    - [Install application](#install-application)
     - [Unit tests](#tests)
     - [Build application](#build-application)
     - [Publish application](#publish-application)
@@ -43,8 +45,8 @@ Source code analysed with [DeepSource](https://deepsource.com/) and [Codacy](htt
 - [npm (=> v11.9.0) & node (=> v25.6.1)](https://nodejs.org/en)
 - [Android Studio](https://developer.android.com/studio)
     - Configure a device with `Virtual Device Manager`
-    - `SDK` => version 33
-    - `build-tools & platform-tools` => v33.0.0
+    - `SDK` => version 54
+    - `build-tools & platform-tools` => v54.0.0
 - `adb.exe` (Android Debug Bridge)
     - Automatically installed with Android Studio or SDK
 
@@ -94,6 +96,12 @@ In the output, you'll find options to open the app in a
 You can start developing by editing the files inside the **app** directory. This project uses
 [file-based routing](https://docs.expo.dev/router/introduction).
 
+### Install application
+
+You can install application in your smartphone
+1. Download [apk file](https://github.com/NY-Daystar/Ambre/releases/download/v1.1.0/Ambre.apk)
+2. Launch this file in your smartphone
+
 ### Tests
 
 Unit tests are developped in `Jest`  
@@ -104,6 +112,8 @@ npm test
 ```
 
 ### Build application
+
+> Your app logo will be in 420x420 px 
 
 1. Install `eas`
 
@@ -143,7 +153,7 @@ eas build:configure
 
 ### Publish application
 
-1. You need to [build application] in `production` profile
+1. You need to [build application](#build-application) in `production` profile
 
 2. Go into your [eas dashboard](https://expo.dev/accounts/ny-daystar)
 
