@@ -7,7 +7,11 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Project releases
 
-## 1.0.1 - January 26th, 2026 - small UI fixes
+## 1.0.1 - January XXth, 2026 - 
+
+TODO
+
+## 1.0.1 - January 27th, 2026 - small UI fixes
 
 ### Changed
 
