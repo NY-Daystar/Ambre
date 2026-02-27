@@ -7,7 +7,25 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Project releases
 
-## 1.0.1 - January 26th, 2026 - small UI fixes
+## 1.1.0 - April 19th, 2026 - new settings
+
+### Added
+
+- FontAwesome icons
+- Slider in Settings tab
+
+### Changed
+
+- Force light theme
+- Bounds calculation 
+- Change label in settings
+- Logo sizing
+
+### Fixed
+
+- Unit displayed 
+
+## 1.0.1 - January 27th, 2026 - small UI fixes
 
 ### Changed
 

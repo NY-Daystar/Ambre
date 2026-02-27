@@ -2,6 +2,8 @@
 
 function main() {
     check_version
+    #check_empty_folder
+    #check_big_files
 
     unittest
     check 'unittest' $?
@@ -90,6 +92,20 @@ function check_version {
     fi
 }
 
+function check_empty_folder(){
+    folders=$(find . -type d -empty -not -path "./.git/*")
+    for folder in ${folders[@]};do
+        log_color "the folder \"${folder}\" is empty" "yellow"
+    done
+}
+
+function check_big_files() {
+    size=5M
+    files=$(find . -type f -size +${size} -not -path "./.git/*")
+    for file in ${files[@]};do
+        log_color "the file \"${file}\" > ${size}" "yellow"
+    done
+}
 
 function unittest() {
     npm run test

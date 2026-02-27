@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Period } from '../config';
 import { wp } from '../utils/responsive';
@@ -36,15 +36,26 @@ const styles = StyleSheet.create({
 export default function RadioGroup({ selected, onChange }: Props) {
 	const options: string[] = Period.GetPeriods();
 
+	const handleTabPress = useCallback(
+		(option: string) => {
+			onChange(option);
+		},
+		[onChange],
+	);
+
 	return (
 		<View style={styles.container}>
 			{options.map((option) => (
 				<TouchableOpacity
 					key={option}
 					style={[styles.button, selected === option && styles.selected]}
-					onPress={() => onChange(option)}
+					onPress={() => handleTabPress(option)}
 				>
-					<Text style={[styles.text, selected === option && styles.selectedLabel]}>{option}</Text>
+					<Text
+						style={[styles.text, selected === option && styles.selectedLabel]}
+					>
+						{option}
+					</Text>
 				</TouchableOpacity>
 			))}
 		</View>
