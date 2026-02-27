@@ -45,16 +45,36 @@ const styles = StyleSheet.create({
 export default function SettingsTab({ configuration, setConfiguration }: Props) {
 	const { t } = useTranslation();
 	const [form, setForm] = useState<FormValues>({
-		Morning: { text: t('morning'), value: configuration.Morning.toString(), keyType: 'numeric' },
-		Midday: { text: t('midday'), value: configuration.Midday.toString(), keyType: 'numeric' },
-		Evening: { text: t('evening'), value: configuration.Evening.toString(), keyType: 'numeric' },
-		BloodUnit: { text: t('unit'), value: configuration.BloodUnit.toString(), keyType: 'default' },
+		Morning: {
+			text: t('morning'),
+			value: configuration.Morning.toString(),
+			keyType: 'numeric',
+		},
+		Midday: {
+			text: t('midday'),
+			value: configuration.Midday.toString(),
+			keyType: 'numeric',
+		},
+		Evening: {
+			text: t('evening'),
+			value: configuration.Evening.toString(),
+			keyType: 'numeric',
+		},
+		BloodUnit: {
+			text: t('unit'),
+			value: configuration.BloodUnit.toString(),
+			keyType: 'default',
+		},
 	});
 
 	const updateField = (key: keyof FormValues, value: string) => {
 		setForm((prev) => ({ ...prev, [key]: value }));
+		if (!isNaN(Number(value))) {
+			configuration[key] = Number(value) as never;
+		} else {
+			configuration[key] = value as never;
+		}
 
-		configuration[key] = (form[key].keyType === 'numeric' ? parseInt(value) : value) as never;
 		setConfiguration(configuration);
 		ConfigService.Save(configuration);
 	};

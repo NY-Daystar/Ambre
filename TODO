@@ -1,13 +1,12 @@
-- TODO voir pour mettre un style par défaut en theme
-
 - TODO ajouter des icons fontAwesome
+
+- TODO voir pour mettre un style par défaut en theme
 
 - TODO check issues
 
-- TODO changer les settings en mettant un onglet `range` avec des valeurs
-  min-max pour chaque element
-- L'idee est d'avoir une `scrollview` comprenant une `liste de range` vide ou
-  non
+- TODO changer les settings en mettant un onglet `range` avec des valeurs min-max pour
+  chaque element
+- L'idee est d'avoir une `scrollview` comprenant une `liste de range` vide ou non
 - On a un `bouton` pour ajouter une nouvelle range dans la liste
 - Chaque range a un bouton `supprimer`
 - Chaque action fait une sauvegarde dans l'async storage
@@ -22,9 +21,8 @@
 
 TODO Application pour l'application de Repas
 
-- L'idées est d'avoir une liste de repas ou on peut ajouter des repas et créer
-  un menu de la semaine, a chaque fois ca genere une nouvelle liste de menu
-  qu'on peut adapter
+- L'idées est d'avoir une liste de repas ou on peut ajouter des repas et créer un menu de
+  la semaine, a chaque fois ca genere une nouvelle liste de menu qu'on peut adapter
 - voir date de repas
 - faire des listes de repas potentiel
 - et tirer au sort un menu de x jours avec le choix

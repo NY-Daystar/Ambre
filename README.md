@@ -31,6 +31,7 @@ Source code analysed with [DeepSource](https://deepsource.com/) and [Codacy](htt
 - [Requirements](#requirements)
 - [User guide](#user-guide)
 - [Get started](#get-started)
+    - [Install application](#install-application)
     - [Unit tests](#tests)
     - [Build application](#build-application)
     - [Publish application](#publish-application)
@@ -94,6 +95,12 @@ In the output, you'll find options to open the app in a
 You can start developing by editing the files inside the **app** directory. This project uses
 [file-based routing](https://docs.expo.dev/router/introduction).
 
+### Install application
+
+You can install application in your smartphone
+1. Download [apk file](https://github.com/NY-Daystar/Ambre/releases/download/v1.0.1/Ambre.apk)
+2. Launch this file in your smartphone
+
 ### Tests
 
 Unit tests are developped in `Jest`  
@@ -104,6 +111,8 @@ npm test
 ```
 
 ### Build application
+
+> Your app logo will be in 420x420 px 
 
 1. Install `eas`
 
